@@ -12,7 +12,7 @@ class add_operation:
         db = pymysql.connect(host=self.host, user=self.user, password=self.password, database=self.database)
 
         cursor = db.cursor()
-        # try:
+
         sql = """
         insert into website (idwebsite,WebsitName) values (%s,%s);
         """
@@ -25,7 +25,7 @@ class add_operation:
         db = pymysql.connect(host=self.host, user=self.user, password=self.password, database=self.database)
 
         cursor = db.cursor()
-        # try:
+
         sql = """
         insert into shop (idshop,sname,rating,Location,idwebsite) values (%s,%s,%s,%s,%s);
         """
@@ -39,7 +39,7 @@ class add_operation:
         db = pymysql.connect(host=self.host, user=self.user, password=self.password, database=self.database)
 
         cursor = db.cursor()
-        # try:
+
         sql = """
         insert into items (iditems,Itname,prince,keyword,idshop) values (%s,%s,%s,%s,%s);
         """
@@ -49,13 +49,13 @@ class add_operation:
         cursor.close()
         db.close()
 
-    def add_items(self,idorders,idItems,order_date):
+    def add_order_has_items(self,idorders,idItems,order_date):
         db = pymysql.connect(host=self.host, user=self.user, password=self.password, database=self.database)
 
         cursor = db.cursor()
-        # try:
+
         sql = """
-        insert into items (idorders,idItems,order_date) values (%s,%s,%s);
+        insert into order_has_items (idorders,idItems,order_date) values (%s,%s,%s);
         """
         cursor.execute(sql, [idorders,idItems,order_date])
         
@@ -67,7 +67,7 @@ class add_operation:
         db = pymysql.connect(host=self.host, user=self.user, password=self.password, database=self.database)
 
         cursor = db.cursor()
-        # try:
+
         sql = """
         insert into orders (idorders,qty,idcustomer,order_date) values (%s,%s,%s,%s);
         """
@@ -81,7 +81,7 @@ class add_operation:
         db = pymysql.connect(host=self.host, user=self.user, password=self.password, database=self.database)
 
         cursor = db.cursor()
-        # try:
+
         sql = """
         insert into customer (idcustomer,address,cname) values (%s,%s,%s);
         """
