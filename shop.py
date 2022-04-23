@@ -69,9 +69,25 @@ class shop:
         else:
             print("Shopname is "+ str(results[0][1])+", "+"rating is "+str(results[0][2])+", "+"location is "+str(results[0][3]))
             return
-    
+
+    def update_shop(self,sname:str, rating:int, Location:str, idshop:int):
+        db = self.db
+        cursor = db.cursor()
+        try:
+            sql = f'''update shop set sname=(%s), rating=(%s), Location=(%s) where idshop=(%s);'''
+            cursor.execute(sql,[sname,rating,Location,idshop])
+
+            db.commit()
+        except (db.Error, db.Warning) as e:
+            print(e)
+
+        cursor.close()
+        db.close()
+
+
 shop1 = shop("localhost",3306,"root","123456","retail")
 # shop1.insert_shop(1, "a", 1, "as", 1)
 # shop1.delete_shop("a")
-shop1.search_shop_by("a")
+# shop1.search_shop_by("a")
 # shop1.add_item_to_shop(1,1)
+shop1.update_shop("b",1,"b",1)
