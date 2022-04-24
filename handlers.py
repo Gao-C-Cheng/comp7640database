@@ -1,7 +1,4 @@
 from datetime import date
-from operator import contains
-import sqlite3
-from unittest import result
 import pymysql
 
 class items:
@@ -129,7 +126,6 @@ class items:
             for cell in row:
                 s = s + str(cell) + ', '
             print(s)
-
 
 class orders:
     def __init__(self, host, port, user, password, database):
@@ -312,7 +308,7 @@ class shop:
     def __del__(self):
         self.cursor.close()
         self.db.close()
-    
+
     def contains_ID(self,idshop:int) ->bool:
         ans = False
         db = self.db

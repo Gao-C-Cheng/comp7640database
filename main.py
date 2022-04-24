@@ -1,18 +1,19 @@
-from ast import keyword
-from turtle import back
 from handlers import shop, items, customer, orders
-import pymysql
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config.ini')
 
 #'localhost', 3306, 'root', '', 'retail'
-host = 'localhost'
-port = 3306
-user = 'root'
-password = ''
-database = 'retail'
-shop1 = shop(host, port, user, password, database)
-item = items(host, port, user, password, database)
-customer1 = customer(host, port, user, password, database)
-order = orders(host, port, user, password, database)
+host = config['pymysql']['host']
+port = config['pymysql']['port']
+user = config['pymysql']['user']
+password = config['pymysql']['password']
+database = config['pymysql']['database']
+shop1 = shop(host, int(port), user, password, database)
+item = items(host, int(port), user, password, database)
+customer1 = customer(host, int(port), user, password, database)
+order = orders(host, int(port), user, password, database)
 
 
 def main():
