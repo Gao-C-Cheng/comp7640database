@@ -1,2 +1,2 @@
 # comp7640database
-- source retail.sql
+- source retail1.sql
