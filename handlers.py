@@ -1,6 +1,26 @@
 from datetime import date
 import pymysql
 
+class website:
+    def __init__(self,host,port,user,password,database):
+        self.db = pymysql.connect(host=host, port=port, user=user, password=password, database=database)
+        self.cursor = self.db.cursor()
+    
+    def insert_website(self,idWebsite:int,WebsitName:str):
+        db = self.db
+        cursor = self.cursor
+
+        sql = f"""
+            insert into website (idWebsite, WebsiteName) values (%s,%s);
+            """
+        try:
+            cursor.execute(sql,[idWebsite, WebsiteName])
+            print(sql)
+            db.commit()
+        except (db.Error, db.Warning) as e:
+            print(sql)
+            print(e)   
+
 class items:
     def __init__(self, host, port, user, password, database):
         self.db = pymysql.connect(host=host, port=port, user=user, password=password, database=database)
